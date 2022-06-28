@@ -1,6 +1,7 @@
 from transformers import AutoTokenizer, AutoModel
 import torch
 from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 sentences = [
     "software development",
@@ -45,7 +46,7 @@ mean_pooled = summed / counts
 
 mean_pooled = mean_pooled.detach().numpy()
 
-print(cosine_similarity(
+print(np.median(cosine_similarity(
     [mean_pooled[0]],
     mean_pooled[1:]
-))
+)[0]))
